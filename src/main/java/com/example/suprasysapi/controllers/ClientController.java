@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +37,7 @@ public class ClientController {
 
         BeanUtils.copyProperties(clientDTO, client);
 
-        service.create(client);
+        service.save(client);
 
         return new ResponseEntity<>(client, HttpStatus.CREATED);
     }
@@ -55,5 +56,14 @@ public class ClientController {
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(clientOptional.get());
         }
+    }
+
+    @PutMapping("/clients/{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id, @RequestBody ClientDTO clientDTO) {
+        Client client = new Client();
+
+        BeanUtils.copyProperties(clientDTO, client);
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.update(id, client));
     }
 }

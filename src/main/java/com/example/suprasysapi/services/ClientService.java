@@ -16,15 +16,26 @@ public class ClientService {
     @Autowired
     private ClientRepository repository;
 
-    public Client create(Client client) {
+    public Client save(Client client) {
         return repository.save(client);
     }
 
     public Optional<Client> findById(Integer id) {
-        return repository.findById(Long.valueOf(id));
+        return repository.findById(id);
     }
 
     public Page<Client> findAll(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    public Client update(Integer id, Client client) {
+        Optional<Client> clientOptional = repository.findById(id);
+        
+        clientOptional.get().setName(client.getName());
+        clientOptional.get().setLogin(client.getLogin());
+        clientOptional.get().setPassword(client.getPassword());
+        clientOptional.get().setState(client.getState());
+
+        return repository.save(clientOptional.get());
     }
 }
