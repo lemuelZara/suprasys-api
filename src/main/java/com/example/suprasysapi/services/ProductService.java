@@ -26,4 +26,15 @@ public class ProductService {
     public Page<Product> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
+
+    public Product update(Integer id, Product product) {
+        Optional<Product> productOptional = repository.findById(id);
+        
+        productOptional.get().setName(product.getName());
+        productOptional.get().setStock(product.getStock());
+        productOptional.get().setValue(product.getValue());
+        productOptional.get().setDiscount(product.getDiscount());
+
+        return repository.save(productOptional.get());
+    }
 }
