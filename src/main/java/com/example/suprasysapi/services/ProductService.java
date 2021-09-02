@@ -37,4 +37,8 @@ public class ProductService {
 
         return repository.save(productOptional.get());
     }
+
+    public void delete(Integer id) {
+        repository.deleteById(id);
+    }
 }
