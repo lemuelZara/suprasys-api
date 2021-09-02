@@ -12,13 +12,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "clients")
+@Entity(name = "products")
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-public class Client {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -26,12 +26,12 @@ public class Client {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "login", nullable = false)
-    private String login;
+    @Column(name = "stock", nullable = false)
+    private int stock;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "value", nullable = false)
+    private double value;
 
-    @Column(name = "state", nullable = false)
-    private Integer state;
+    @Column(name = "discount", nullable = false)
+    private double discount;
 }
