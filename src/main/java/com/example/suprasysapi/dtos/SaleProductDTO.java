@@ -1,12 +1,8 @@
 package com.example.suprasysapi.dtos;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
-
-import com.example.suprasysapi.domain.Product;
-import com.example.suprasysapi.domain.Sale;
 
 import lombok.Data;
 

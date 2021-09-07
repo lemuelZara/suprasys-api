@@ -16,6 +16,8 @@ import com.example.suprasysapi.repositories.ProductRepository;
 import com.example.suprasysapi.repositories.SaleRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -62,5 +64,13 @@ public class SaleService {
         sale.setItens(salesProducts);
 
         return saleRepository.save(sale);
+    }
+
+    public Page<Sale> findAll(Pageable pageable) {
+        return saleRepository.findAll(pageable);
+    }
+
+    public Optional<Sale> findById(Integer id) {
+        return saleRepository.findById(id);
     }
 }
