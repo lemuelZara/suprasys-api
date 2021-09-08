@@ -14,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "*")
 public class SaleController {
+
     @Autowired
     private SaleService service;
 
@@ -42,7 +44,7 @@ public class SaleController {
     }
 
     @GetMapping("/sales/{id}")
-    public ResponseEntity<Object> list(@PathVariable(value = "id") Integer id) {
+    public ResponseEntity<Object> show(@PathVariable(value = "id") Integer id) {
         Optional<Sale> saleOptional = service.findById(id);
 
         if (!saleOptional.isPresent()) {
@@ -50,5 +52,12 @@ public class SaleController {
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(saleOptional.get());
         }
+    }
+
+    @DeleteMapping("/sales/{id}")
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") Integer id) {
+        service.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }
