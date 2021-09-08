@@ -45,6 +45,6 @@ public class Sale {
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private Client client;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sale", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<SaleProduct> itens;
 }
