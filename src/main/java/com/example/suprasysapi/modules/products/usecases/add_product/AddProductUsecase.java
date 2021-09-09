@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.example.suprasysapi.modules.products.dtos.ProductRequestModel;
 import com.example.suprasysapi.modules.products.entities.Product;
 import com.example.suprasysapi.modules.products.infra.repositories.ProductRepository;
+import com.example.suprasysapi.shared.exceptions.BadRequestException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ public class AddProductUsecase {
     @Autowired
     private ProductRepository repository;
 
-    public Product execute(ProductRequestModel productRequestModel) throws Exception {
+    public Product execute(ProductRequestModel productRequestModel) {
         Optional<Product> productAlreadyExists = repository.findByName(productRequestModel.getName());
 
         if (productAlreadyExists.isPresent()) {
-            throw new Exception("This product already exists. Try again!");
+            throw new BadRequestException("This product already exists. Try again!");
         }
 
         Product product = new Product();

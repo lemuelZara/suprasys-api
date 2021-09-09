@@ -21,7 +21,7 @@ public class AddSaleController {
     private AddSaleUsecase addSaleUsecase;
 
     @PostMapping("/sales")
-    public ResponseEntity<Object> handle(@RequestBody SaleRequestModel saleRequestModel, @RequestHeader String clientId) throws Exception {
+    public ResponseEntity<Object> handle(@RequestBody SaleRequestModel saleRequestModel, @RequestHeader String clientId) {
         Object sale = addSaleUsecase.execute(saleRequestModel, Integer.parseInt(clientId));
 
         return new ResponseEntity<>(sale, HttpStatus.CREATED);

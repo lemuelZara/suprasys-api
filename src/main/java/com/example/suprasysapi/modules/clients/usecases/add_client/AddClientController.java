@@ -20,7 +20,7 @@ public class AddClientController {
     private AddClientUsecase addClientUsecase;
 
     @PostMapping("/clients")
-    public ResponseEntity<Object> handle(@RequestBody ClientRequestModel clientRequestModel) throws Exception {
+    public ResponseEntity<Object> handle(@RequestBody ClientRequestModel clientRequestModel) {
         Object client = addClientUsecase.execute(clientRequestModel);
 
         return new ResponseEntity<>(client, HttpStatus.CREATED);

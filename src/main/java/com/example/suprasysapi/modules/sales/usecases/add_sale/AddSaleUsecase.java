@@ -14,6 +14,7 @@ import com.example.suprasysapi.modules.sales.dtos.SaleRequestModel;
 import com.example.suprasysapi.modules.sales.entities.Sale;
 import com.example.suprasysapi.modules.sales.entities.SaleProduct;
 import com.example.suprasysapi.modules.sales.infra.repositories.SaleRepository;
+import com.example.suprasysapi.shared.exceptions.BadRequestException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,13 @@ public class AddSaleUsecase {
     @Autowired
     private ProductRepository productRepository;
 
-    public Sale execute(SaleRequestModel saleRequestModel, Integer clientId) throws Exception {
+    public Sale execute(SaleRequestModel saleRequestModel, Integer clientId) {
         List<SaleProduct> salesProducts = new ArrayList<>();
         Optional<Client> findClient = clientRepository.findById(clientId);
+
+        if (!findClient.isPresent()) {
+            throw new BadRequestException("Client does not exists!");
+        }
 
         Sale sale = new Sale();
         sale.setValue(saleRequestModel.getValue());
@@ -46,6 +51,10 @@ public class AddSaleUsecase {
             .stream()
             .map(item -> {
                 Optional<Product> p = productRepository.findById(item.getProduct().get("id"));
+
+                if (!p.isPresent()) {
+                    throw new BadRequestException("Product id(" + item.getProduct().get("id") + ") does not exists!");
+                }
 
                 SaleProduct saleProduct = new SaleProduct();
                 saleProduct.setValue(item.getValue());

@@ -1,7 +1,10 @@
 package com.example.suprasysapi.modules.sales.usecases.delete_sale;
 
+import java.util.Optional;
+
 import com.example.suprasysapi.modules.sales.entities.Sale;
 import com.example.suprasysapi.modules.sales.infra.repositories.SaleRepository;
+import com.example.suprasysapi.shared.exceptions.BadRequestException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +16,14 @@ public class DeleteSaleUsecase {
     private SaleRepository repository;
 
     public void execute(Integer id) {
-        Sale sale = repository.findById(id).get();
+        Optional<Sale> sale = repository.findById(id);
 
-        sale.getItens().removeAll(sale.getItens());
+        if (!sale.isPresent()) {
+            throw new BadRequestException("Unable to delete the sale because it doesn't exist!");
+        }
 
-        repository.delete(sale);
+        sale.get().getItens().removeAll(sale.get().getItens());
+
+        repository.delete(sale.get());
     }
 }

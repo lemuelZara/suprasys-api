@@ -5,6 +5,7 @@ import java.util.Optional;
 import com.example.suprasysapi.modules.clients.dtos.ClientRequestModel;
 import com.example.suprasysapi.modules.clients.entities.Client;
 import com.example.suprasysapi.modules.clients.infra.repositories.ClientRepository;
+import com.example.suprasysapi.shared.exceptions.BadRequestException;
 import com.example.suprasysapi.shared.providers.hash_provider.HashProvider;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +20,11 @@ public class AddClientUsecase {
     @Autowired
     private HashProvider hashProvider;
 
-    public Client execute(ClientRequestModel clientRequestModel) throws Exception {
+    public Client execute(ClientRequestModel clientRequestModel) {
         Optional<Client> clientAlreadyExists = repository.findByLogin(clientRequestModel.getLogin());
 
         if (clientAlreadyExists.isPresent()) {
-            throw new Exception("This login already exists. Try again!");
+            throw new BadRequestException("This login already exists. Try again!");
         }
 
         Client client = new Client();

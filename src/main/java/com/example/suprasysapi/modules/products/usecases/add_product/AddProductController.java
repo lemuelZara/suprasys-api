@@ -20,7 +20,7 @@ public class AddProductController {
     private AddProductUsecase addProductUsecase;
 
     @PostMapping("/products")
-    public ResponseEntity<Object> handle(@RequestBody ProductRequestModel productRequestModel) throws Exception {
+    public ResponseEntity<Object> handle(@RequestBody ProductRequestModel productRequestModel) {
         Object product = addProductUsecase.execute(productRequestModel);
 
         return new ResponseEntity<>(product, HttpStatus.CREATED);
