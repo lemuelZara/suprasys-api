@@ -74,10 +74,10 @@ A implementação do banco de dados foi feita da seguinte forma (arquivo `postgr
 // Request
 
 {
-	"name": "Lemuel",
-	"login": "lemuel",
-	"password": "abc123",
-	"state": 1
+  "name": "Lemuel",
+  "login": "lemuel",
+  "password": "abc123",
+  "state": 1
 }
 ```
 
@@ -124,10 +124,10 @@ A implementação do banco de dados foi feita da seguinte forma (arquivo `postgr
 // Request
 
 {
-	"name": "Lemuel Coelho Zara",
-	"login": "lemuelczara",
-	"password": "hhjs293",
-	"state": 2
+  "name": "Lemuel Coelho Zara",
+  "login": "lemuelczara",
+  "password": "hhjs293",
+  "state": 2
 }
 ```
 
@@ -146,10 +146,10 @@ A implementação do banco de dados foi feita da seguinte forma (arquivo `postgr
 // Request
 
 {
-	"name": "Arroz",
-	"stock": 10,
-	"value": 17.80,
-	"discount": 1.20
+  "name": "Arroz",
+  "stock": 10,
+  "value": 17.80,
+  "discount": 1.20
 }
 ```
 
@@ -220,30 +220,30 @@ Obs: adicionar no Header da requisição a propriedade `clientId` para vincular 
 // Request
 
 {
-	"date": "2021-09-17",
-	"value": 999,
-	"discount": 999,
-	"total": 999,
-	"itens": [
-		{
-			"amount": 5,
-			"value": 5,
-			"discount": 5,
-			"total": 5,
-			"product": {
-				"id": 1
-			}
-		},
-		{
-			"amount": 6,
-			"value": 6,
-			"discount": 6,
-			"total": 6,
-			"product": {
-				"id": 2
-			}
-		}
-	]
+   "date": "2021-09-17",
+   "value": 999,
+   "discount": 999,
+   "total": 999,
+   "itens": [
+      {
+         "amount": 5,
+         "value": 5,
+         "discount": 5,
+         "total": 5,
+         "product": {
+            "id": 1
+         }
+      },
+      {
+         "amount": 6,
+         "value": 6,
+         "discount": 6,
+         "total": 6,
+         "product": {
+            "id": 2
+         }
+      }
+   ]
 }
 ```
 
