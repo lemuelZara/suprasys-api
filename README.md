@@ -347,3 +347,7 @@ Obs: adicionar no Header da requisição a propriedade `clientId` para vincular 
 #### Delete sale
 
 `DELETE http://localhost:8080/api/v1/sales/{id} HTTP/1.1`
+
+<br>
+
+[Considerações gerais](./CONSIDERATIONS.md) 💡
