@@ -61,6 +61,11 @@ A implementação do banco de dados foi feita da seguinte forma (arquivo `postgr
   );
 ```
 
+Rode o seguinte comando para criar o Banco de Dados (necessário ter o Docker e Docker Compose instalado):
+```bash
+docker-compose up -d
+```
+
 <br>
 
 ## Rotas da aplicação
